@@ -464,24 +464,26 @@ const CreateContent = () => {
                   <TabsTrigger value="editor">{getTranslation('editor')}</TabsTrigger>
                   <TabsTrigger value="preview">{getTranslation('preview')}</TabsTrigger>
                 </TabsList>
+              
+                <TabsContent value="editor" className="space-y-4 mt-0">
+                  <Textarea
+                    className="min-h-[400px] font-mono"
+                    value={generatedContent}
+                    onChange={(e) => setGeneratedContent(e.target.value)}
+                  />
+                </TabsContent>
+              
+                <TabsContent value="preview" className="mt-0">
+                  <div 
+                    className="border rounded-md p-6 min-h-[400px] prose prose-blue max-w-none"
+                    dangerouslySetInnerHTML={{ __html: generatedContent }}
+                  />
+                </TabsContent>
               </Tabs>
             </CardHeader>
             
             <CardContent>
-              <TabsContent value="editor" className="space-y-4 mt-0">
-                <Textarea
-                  className="min-h-[400px] font-mono"
-                  value={generatedContent}
-                  onChange={(e) => setGeneratedContent(e.target.value)}
-                />
-              </TabsContent>
-              
-              <TabsContent value="preview" className="mt-0">
-                <div 
-                  className="border rounded-md p-6 min-h-[400px] prose prose-blue max-w-none"
-                  dangerouslySetInnerHTML={{ __html: generatedContent }}
-                />
-              </TabsContent>
+              {/* Intentionally empty - moved TabsContent inside the Tabs component */}
             </CardContent>
             
             <CardFooter className="flex flex-wrap gap-2 justify-between">
