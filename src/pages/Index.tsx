@@ -116,7 +116,7 @@ const Index = () => {
             </div>
             <div className="md:w-1/2">
               <img 
-                src="https://source.unsplash.com/random/1200x800/?laptop-work" 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" 
                 alt="SEO Content Creation" 
                 className="rounded-lg shadow-xl w-full h-auto object-cover"
               />
@@ -304,3 +304,4 @@ const Index = () => {
 };
 
 export default Index;
+

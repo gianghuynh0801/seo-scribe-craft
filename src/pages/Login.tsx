@@ -1,82 +1,68 @@
 
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+type LoginFormInputs = {
+  username: string;
+  password: string;
+};
 
 const Login = () => {
   const { t } = useLanguage();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>();
 
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    
-    // Simulate login API call
-    setTimeout(() => {
-      console.log("Login attempted with:", { username, password });
-      setIsLoading(false);
-    }, 1500);
+  const onSubmit = (data: LoginFormInputs) => {
+    console.log("Login attempted with:", data);
+    // Actual login logic here...
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="pt-24 pb-16 flex items-center justify-center">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>{t('loginTitle')}</CardTitle>
-            <CardDescription>{t('loginSubtitle')}</CardDescription>
-          </CardHeader>
-          <form onSubmit={handleLogin}>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="username">{t('username')}</Label>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="johndoe"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
-              </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="password">{t('password')}</Label>
-                  <Link to="/forgot-password" className="text-xs text-blue-600 hover:underline">
-                    {t('forgotPassword')}
-                  </Link>
-                </div>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-3">
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? t('loading') : t('loginButton')}
-              </Button>
-              <div className="text-sm text-center">
-                {t('noAccount')}{' '}
-                <Link to="/register" className="text-blue-600 hover:underline">
-                  {t('createAccount')}
-                </Link>
-              </div>
-            </CardFooter>
-          </form>
-        </Card>
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50 px-4">
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900">{t('login')}</h2>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div>
+            <Label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+              {t('username')}
+            </Label>
+            <Input 
+              id="username" 
+              type="text" 
+              autoComplete="username" 
+              {...register('username', { required: t('usernameRequired') })}
+              aria-invalid={errors.username ? "true" : "false"}
+            />
+            {errors.username && (
+              <p role="alert" className="mt-1 text-sm text-red-600">{errors.username.message}</p>
+            )}
+          </div>
+          <div>
+            <Label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              {t('password')}
+            </Label>
+            <Input 
+              id="password" 
+              type="password" 
+              autoComplete="current-password" 
+              {...register('password', { required: t('passwordRequired') })}
+              aria-invalid={errors.password ? "true" : "false"}
+            />
+            {errors.password && (
+              <p role="alert" className="mt-1 text-sm text-red-600">{errors.password.message}</p>
+            )}
+          </div>
+          <div className="flex items-center justify-between">
+            <a href="/forgot-password" className="text-sm text-seo-blue hover:underline">
+              {t('forgotPassword')}
+            </a>
+          </div>
+          <Button type="submit" className="w-full" size="lg">
+            {t('login')}
+          </Button>
+        </form>
       </div>
     </div>
   );

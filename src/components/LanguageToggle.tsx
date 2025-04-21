@@ -1,4 +1,7 @@
 
+// The LanguageToggle component already uses the globe icon with a popover and buttons to switch language.
+// No changes needed here.
+
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Globe } from "lucide-react";
@@ -37,3 +40,4 @@ export function LanguageToggle() {
     </Popover>
   );
 }
+
