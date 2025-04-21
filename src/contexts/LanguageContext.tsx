@@ -145,6 +145,43 @@ const translations: Translations = {
     vi: 'Liên hệ với chúng tôi',
     en: 'Contact Us',
   },
+  // Login page
+  loginTitle: {
+    vi: 'Đăng nhập vào tài khoản',
+    en: 'Log in to your account'
+  },
+  loginSubtitle: {
+    vi: 'Nhập thông tin đăng nhập của bạn để tiếp tục',
+    en: 'Enter your credentials to continue'
+  },
+  username: {
+    vi: 'Tên đăng nhập',
+    en: 'Username'
+  },
+  password: {
+    vi: 'Mật khẩu',
+    en: 'Password'
+  },
+  forgotPassword: {
+    vi: 'Quên mật khẩu?',
+    en: 'Forgot password?'
+  },
+  loginButton: {
+    vi: 'Đăng nhập',
+    en: 'Log in'
+  },
+  noAccount: {
+    vi: 'Chưa có tài khoản?',
+    en: 'Don\'t have an account?'
+  },
+  createAccount: {
+    vi: 'Tạo tài khoản',
+    en: 'Create account'
+  },
+  loading: {
+    vi: 'Đang xử lý...',
+    en: 'Processing...'
+  }
 };
 
 type LanguageContextType = {

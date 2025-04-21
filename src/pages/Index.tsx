@@ -116,9 +116,9 @@ const Index = () => {
             </div>
             <div className="md:w-1/2">
               <img 
-                src="https://source.unsplash.com/photo-1488590528505-98d2b5aba04b" 
+                src="https://source.unsplash.com/random/1200x800/?laptop-work" 
                 alt="SEO Content Creation" 
-                className="rounded-lg shadow-xl w-full h-auto"
+                className="rounded-lg shadow-xl w-full h-auto object-cover"
               />
             </div>
           </div>
